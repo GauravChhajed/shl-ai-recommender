@@ -177,4 +177,3 @@ curl -X POST "https://shl-ai-recommender.onrender.com/recommend" \
 **Gaurav Chhajed**  
 B.Tech Electrical & Electronics Engineering – NIT Andhra Pradesh  
 📧 gauravc3082004@gmail.com  
-🔗 GitHub: https://github.com/your-username
