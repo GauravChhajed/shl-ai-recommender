@@ -33,7 +33,8 @@ An intelligent recommendation engine that suggests the most relevant **individua
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-2️⃣ Start FastAPI Server
+
+###2️⃣ Start FastAPI Server
 python -m uvicorn src.api:app --host 127.0.0.1 --port 8080
 
 
@@ -47,7 +48,7 @@ curl -X POST "http://127.0.0.1:8080/recommend" ^
      -H "Content-Type: application/json" ^
      -d "{\"query\": \"Hiring a Java developer who collaborates with teams\", \"top_k\": 7}"
 
-3️⃣ Launch Streamlit UI
+###3️⃣ Launch Streamlit UI
 streamlit run src/ui_app.py
 
 
@@ -104,7 +105,7 @@ Public URL example:
 
 https://huggingface.co/spaces/<username>/shl-assessment-recommender
 
-📂 Project Structure
+###📂 Project Structure
 SHL_Recommender/
 │
 ├── src/
@@ -124,7 +125,7 @@ SHL_Recommender/
 ├── requirements.txt        # Dependencies
 └── README.md               # Documentation
 
-📊 Submission Deliverables
+###📊 Submission Deliverables
 Deliverable	Description
 🧠 submission.csv	Predictions for 90 queries (Query, Assessment_url)
 🌐 API Endpoint	/recommend on Render
@@ -145,7 +146,7 @@ Deliverable	Description
   }
 ]
 
-🌐 Live API (Example)
+###🌐 Live API (Example)
 Base URL: https://shl-ai-recommender.onrender.com
 GET     /health    → Service status
 POST    /recommend → Returns top assessments
@@ -157,7 +158,7 @@ curl -X POST "https://shl-ai-recommender.onrender.com/recommend" \
      -H "Content-Type: application/json" \
      -d '{"query":"Looking for mid-level Python + SQL + JS and teamwork","top_k":7}'
 
-👨‍💻 Author
+###👨‍💻 Author
 
 Gaurav Chhajed
 B.Tech Electrical & Electronics Engineering – NIT Andhra Pradesh
