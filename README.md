@@ -37,7 +37,7 @@ pip install -r requirements.txt
 
 ---
 
-### 2️⃣ Start FastAPI Server
+### 2️⃣ Start FastAPI Server(local)
 ```
 uvicorn src.api:app --host 0.0.0.0 --port $PORT
 ```
@@ -69,15 +69,17 @@ UI opens at 👉 [http://localhost:8501](http://localhost:8501)
 
 ## 🌐 Deployment
 
-### 🔹 FastAPI (Backend) – Render
+### 🔹 FastAPI (Backend) – Render I uses lite version
 ```
 1. Connect your GitHub repo → New Web Service
 2. Environment: Python 3
 3. Build Command:
-   pip install -r requirements.txt
+   pip install -r requirements-lite.txt
 4. Start Command:
-   uvicorn src.api:app --host 0.0.0.0 --port 8080
-5. After deployment, test:
+   uvicorn src.api_lite:app --host 0.0.0.0 --port 8080
+5. Environment Variable:
+   PYTHON_VERSION = 3.11.9
+6. After deployment, test:
    https://your-app.onrender.com/health
    https://your-app.onrender.com/docs
 ```
@@ -91,7 +93,6 @@ UI opens at 👉 [http://localhost:8501](http://localhost:8501)
    src/ui_app.py
    src/recommend.py
    src/rerank.py
-   src/__init__.py
    data/catalog_clean.csv
    data/index.faiss
    data/meta.json
@@ -108,7 +109,8 @@ UI opens at 👉 [http://localhost:8501](http://localhost:8501)
 SHL_Recommender/
 │
 ├── src/
-│   ├── api.py              # FastAPI app
+│   ├── api.py              # FastAPI app (full pipeline local)
+│   ├── api_lite.py         # FastAPI app (lite, for hosting)
 │   ├── recommend.py        # Core recommender logic
 │   ├── rerank.py           # Query-based reranking
 │   ├── ui_app.py           # Streamlit user interface
@@ -120,9 +122,11 @@ SHL_Recommender/
 │   ├── meta.json           # Embedding metadata
 │   └── Gen_AI Dataset.xlsx # Original dataset (optional)
 │
-├── submission.csv          # Final predictions
-├── requirements.txt        # Dependencies
-└── README.md               # Documentation
+├── submission.csv              # Final predictions
+├── requirements.txt            # Full deps (SBERT + FAISS)
+├── requirements-lite.txt       # Lite deps (scikit-learn TF-IDF)
+└── README.md
+
 ```
 
 ---
@@ -131,7 +135,7 @@ SHL_Recommender/
 | Deliverable         | Description                                            |
 | ------------------- | ------------------------------------------------------ |
 | 🧠 `submission.csv` | Predictions for 90 queries (`Query`, `Assessment_url`) |
-| 🌐 API Endpoint     | `/recommend` on Render                                 |
+| 🌐 API Endpoint     | `/recommend` on Render(lite API)                       |
 | 💻 Streamlit UI     | Hosted on Hugging Face Spaces                          |
 | 📘 GitHub Repo      | Full source code + documentation                       |
 | 🧾 Approach PDF     | 2-page summary of model & evaluation                   |
