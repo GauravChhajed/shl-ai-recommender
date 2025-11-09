@@ -39,7 +39,7 @@ pip install -r requirements.txt
 
 ### 2️⃣ Start FastAPI Server
 ```
-python -m uvicorn src.api:app --host 127.0.0.1 --port 8080
+uvicorn src.api:app --host 0.0.0.0 --port $PORT
 ```
 
 Docs: [http://127.0.0.1:8080/docs](http://127.0.0.1:8080/docs)  
