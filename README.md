@@ -69,7 +69,8 @@ UI opens at 👉 [http://localhost:8501](http://localhost:8501)
 
 ## 🌐 Deployment
 
-### 🔹 FastAPI (Backend) – Render I uses lite version
+### 🔹 FastAPI (Backend) – Render:
+where I used API lite version
 ```
 1. Connect your GitHub repo → New Web Service
 2. Environment: Python 3
