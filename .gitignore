@@ -1,0 +1,12 @@
+# Python / env
+.venv/
+__pycache__/
+*.pyc
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Not needed for review (optional)
+.ipynb_checkpoints/
+data/Gen_AI Dataset.xlsx

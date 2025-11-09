@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+pydantic
+pandas
+numpy
+scikit-learn
+faiss-cpu
+sentence-transformers
+tqdm
+beautifulsoup4
+requests
+lxml
+python-multipart
+streamlit
+pytest
