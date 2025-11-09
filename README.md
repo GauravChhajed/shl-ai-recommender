@@ -29,84 +29,82 @@ An intelligent recommendation engine that suggests the most relevant **individua
 ## ⚙️ Run Locally
 
 ### 1️⃣ Setup Environment
-```bash
+```
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
+```
 
 ---
-###2️⃣ Start FastAPI Server
+
+### 2️⃣ Start FastAPI Server
+```
 python -m uvicorn src.api:app --host 127.0.0.1 --port 8080
+```
 
+Docs: [http://127.0.0.1:8080/docs](http://127.0.0.1:8080/docs)  
+Health Check: [http://127.0.0.1:8080/health](http://127.0.0.1:8080/health)
 
-Docs → http://127.0.0.1:8080/docs
-
-Health Check → http://127.0.0.1:8080/health
-
-Example Request:
-
+**Example Request**
+```
 curl -X POST "http://127.0.0.1:8080/recommend" ^
      -H "Content-Type: application/json" ^
      -d "{\"query\": \"Hiring a Java developer who collaborates with teams\", \"top_k\": 7}"
----
-###3️⃣ Launch Streamlit UI
-streamlit run src/ui_app.py
+```
 
+---
+
+### 3️⃣ Launch Streamlit UI
+```
+streamlit run src/ui_app.py
+```
 
 The Streamlit app provides:
+- Local (Python) → runs recommender directly in memory  
+- Remote API → connects to your deployed FastAPI endpoint (Render)
 
-Local (Python) → runs recommender directly in memory.
+UI opens at 👉 [http://localhost:8501](http://localhost:8501)
 
-Remote API → connects to your deployed FastAPI endpoint (Render).
+---
 
-UI opens at 👉 http://localhost:8501
+## 🌐 Deployment
 
-🌐 Deployment
-🔹 FastAPI (Backend) – Render
+### 🔹 FastAPI (Backend) – Render
+```
+1. Connect your GitHub repo → New Web Service
+2. Environment: Python 3
+3. Build Command:
+   pip install -r requirements.txt
+4. Start Command:
+   uvicorn src.api:app --host 0.0.0.0 --port 8080
+5. After deployment, test:
+   https://your-app.onrender.com/health
+   https://your-app.onrender.com/docs
+```
 
-Connect your GitHub repo → New Web Service
+---
 
-Environment: Python 3
+### 🔹 Streamlit UI – Hugging Face Spaces
+```
+1. Create new Space → Framework: Streamlit
+2. Upload the following files:
+   src/ui_app.py
+   src/recommend.py
+   src/rerank.py
+   src/__init__.py
+   data/catalog_clean.csv
+   data/index.faiss
+   data/meta.json
+   requirements.txt
+3. Set App file → src/ui_app.py
+4. Your Space URL will look like:
+   https://huggingface.co/spaces/<username>/shl-assessment-recommender
+```
 
-Build Command:
+---
 
-pip install -r requirements.txt
-
-
-Start Command:
-
-uvicorn src.api:app --host 0.0.0.0 --port 8080
-
-
-After deployment, test:
-
-https://your-app.onrender.com/health
-
-https://your-app.onrender.com/docs
-
-🔹 Streamlit UI – Hugging Face Spaces
-
-Create new Space → Framework: Streamlit
-
-Upload:
-
-src/ui_app.py
-src/recommend.py
-src/rerank.py
-src/__init__.py
-data/catalog_clean.csv
-data/index.faiss
-data/meta.json
-requirements.txt
-
-
-Set App file → src/ui_app.py
-
-Public URL example:
-
-https://huggingface.co/spaces/<username>/shl-assessment-recommender
-
-###📂 Project Structure
+## 📂 Project Structure
+```
 SHL_Recommender/
 │
 ├── src/
@@ -125,15 +123,23 @@ SHL_Recommender/
 ├── submission.csv          # Final predictions
 ├── requirements.txt        # Dependencies
 └── README.md               # Documentation
+```
 
-###📊 Submission Deliverables
-Deliverable	Description
-🧠 submission.csv	Predictions for 90 queries (Query, Assessment_url)
-🌐 API Endpoint	/recommend on Render
-💻 Streamlit UI	Hosted on Hugging Face Spaces
-📘 GitHub Repo	Full source code + docs
-🧾 Approach PDF	2-page summary of model & evaluation
-✅ Example Output
+---
+
+## 📊 Submission Deliverables
+| Deliverable         | Description                                            |
+| ------------------- | ------------------------------------------------------ |
+| 🧠 `submission.csv` | Predictions for 90 queries (`Query`, `Assessment_url`) |
+| 🌐 API Endpoint     | `/recommend` on Render                                 |
+| 💻 Streamlit UI     | Hosted on Hugging Face Spaces                          |
+| 📘 GitHub Repo      | Full source code + documentation                       |
+| 🧾 Approach PDF     | 2-page summary of model & evaluation                   |
+
+---
+
+## ✅ Example Output
+```
 [
   {
     "assessment_name": "SHL Coding Skills Assessment and Simulations",
@@ -146,22 +152,29 @@ Deliverable	Description
     "score": 0.2399
   }
 ]
+```
 
-###🌐 Live API (Example)
-Base URL: https://shl-ai-recommender.onrender.com
-GET     /health    → Service status
-POST    /recommend → Returns top assessments
+---
 
+## 🌐 Live API (Example)
+Base URL: `https://shl-ai-recommender.onrender.com`
 
-Example:
+| Method | Endpoint     | Description             |
+| ------ | ------------ | ----------------------- |
+| GET    | `/health`    | Service status          |
+| POST   | `/recommend` | Returns top assessments |
 
+**Example**
+```
 curl -X POST "https://shl-ai-recommender.onrender.com/recommend" \
      -H "Content-Type: application/json" \
      -d '{"query":"Looking for mid-level Python + SQL + JS and teamwork","top_k":7}'
+```
 
-###👨‍💻 Author
+---
 
-Gaurav Chhajed
-B.Tech Electrical & Electronics Engineering – NIT Andhra Pradesh
-📧 gauravc3082004@gmail.com
-
+## 👨‍💻 Author
+**Gaurav Chhajed**  
+B.Tech Electrical & Electronics Engineering – NIT Andhra Pradesh  
+📧 gauravc3082004@gmail.com  
+🔗 GitHub: https://github.com/your-username
