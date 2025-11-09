@@ -34,6 +34,7 @@ python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 
+---
 ###2️⃣ Start FastAPI Server
 python -m uvicorn src.api:app --host 127.0.0.1 --port 8080
 
@@ -47,7 +48,7 @@ Example Request:
 curl -X POST "http://127.0.0.1:8080/recommend" ^
      -H "Content-Type: application/json" ^
      -d "{\"query\": \"Hiring a Java developer who collaborates with teams\", \"top_k\": 7}"
-
+---
 ###3️⃣ Launch Streamlit UI
 streamlit run src/ui_app.py
 
